@@ -1,0 +1,53 @@
+<div class="col-12 main-header">
+    <div class="grid">
+      <div class="col-2">
+        <img src="./../assets/images/intellect original.png" alt="Intellect Logo" class="logo">
+      </div>
+      <div class="col-10 right-side">
+        <div class="justify-content-end float-end d-flex"> 
+          <ul class="d-flex">
+        <li class="">
+          <div class="size-16 text-center"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+          <div class="size-14 text-center">{{currentTime}}</div>
+        </li>
+        <li class="">
+          <div class="size-16 text-center"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+          <div class="size-14 text-center">{{formattedDate | date}}</div>
+        </li>
+      </ul>
+      </div>
+      </div>
+</div>
+</div>
+
+<div class="col-12 table-style">
+  <div class="col-12">
+    <p class="size-16 m-0">Servers</p>
+  </div>
+  <div class="col-12">
+  <p-table [columns]="cols" [value]="serverStatus" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <!-- <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td> -->
+            <td *ngFor="let col of columns">
+              <span *ngIf="rowData[col.field] =='In-Active';else elseIfBlock" style="color: #fff; background: #d12828; padding: 3px 0px; border-radius: 25px; width:120px; display: inline-block;">{{rowData[col.field]}}</span>
+              <ng-template #elseIfBlock>
+                <span *ngIf="rowData[col.field] =='Active';else elseBlock"
+                  style="color: #fff; background: #59ca7d; padding: 3px 0px; border-radius: 25px; width:120px; display: inline-block;">{{rowData[col.field]}}</span></ng-template>
+              <ng-template #elseBlock>{{rowData[col.field]}}</ng-template>
+          </td>
+            
+        </tr>
+    </ng-template>
+</p-table>
+</div>
+</div>
